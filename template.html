@@ -113,31 +113,31 @@
             </p>
           </div>
         </div>
-        {% for category, category_items in collection.items() %}
-        <div class="col-12 section-title text-center mb-5">
-          <h2 class="d-block">{{category}}</h2>
-        </div>
-        <div class="row">
-          {% for item in category_items %}
-          <div class="col-lg-4 mb-5 col-md-6">
-            <div class="wine_v_1 text-center pb-4 pt-5">
-              <img src="images/{{item['Картинка']}}" alt="Image" class="img-fluid">
-              {% if item['Акция'] == 'Выгодное предложение' %}
-              <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-              {% endif %}
-              <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{item['Название']}}</h3>
-                <p>
-                  {% if item['Сорт'] %}
-                  Сорт винограда - {{item['Сорт']}}<br/>
-                  {% endif %}
-                  <span class="price">{{item['Цена']}} р.</span>
-                </p>
-              </div>
-            </div>
+        {% for wine_category, category_wine_data in wine_collection.items() %}
+          <div class="col-12 section-title text-center mb-5">
+            <h2 class="d-block">{{wine_category}}</h2>
           </div>
-          {% endfor %}
-        </div>
+          <div class="row">
+            {% for wine_info in category_wine_data %}
+              <div class="col-lg-4 mb-5 col-md-6">
+                <div class="wine_v_1 text-center pb-4 pt-5">
+                  <img src="images/{{wine_info['Картинка']}}" alt="Image" class="img-fluid">
+                  {% if wine_info['Акция'] %}
+                    <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+                  {% endif %}
+                  <div>
+                    <h3 class="heading mt-3 mb-3 text-dark">{{wine_info['Название']}}</h3>
+                    <p>
+                      {% if wine_info['Сорт'] %}
+                        Сорт винограда - {{wine_info['Сорт']}}<br/>
+                      {% endif %}
+                      <span class="price">{{wine_info['Цена']}} р.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
         {% endfor %}
       </div>
     </div>
